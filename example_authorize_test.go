@@ -2,7 +2,7 @@ package go_rbac
 
 import "fmt"
 
-func Example() {
+func ExampleAuthorize() {
 	srvAddr := "127.0.0.1:6801"
 	c, err := New(srvAddr)
 	if err != nil {
