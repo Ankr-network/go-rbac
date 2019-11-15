@@ -9,7 +9,7 @@ create new client:
     ...
 
 authorize something:
-   rsp, err := c.Authorize(&Request{
+   rsp, err := c.Authorize(ctx, &Request{
 		Subject:  "ankr",
 		Resource: "/v1/path/to/rc",
 		Action:   "read",
@@ -35,21 +35,26 @@ type Request struct {
 	Action string
 }
 
-type Client struct {
+type Client interface {
+	Close() error
+	Authorize(ctx context.Context, req *Request) (*Response, error)
+}
+
+type client struct {
 	c rbac.InternalRoleClient
 }
 
 // New create new client for remote rbac server
-func New(srvAddr string) (*Client, error) {
+func New(srvAddr string) (Client, error) {
 	c, err := rbac.NewAnkrInternalRoleClient(srvAddr)
 	if err != nil {
 		return nil, err
 	}
-	return &Client{c}, nil
+	return &client{c}, nil
 }
 
 // Close ends this communication
-func (c *Client) Close() error {
+func (c *client) Close() error {
 	return c.c.Close()
 }
 
@@ -61,13 +66,13 @@ type Response struct {
 }
 
 // Authorize judge the request
-func (c *Client) Authorize(req *Request) (*Response, error) {
+func (c *client) Authorize(ctx context.Context, req *Request) (*Response, error) {
 	in := &rbac.AuthorizeRequest{
 		Action:   req.Action,
 		Subject:  req.Subject,
 		Resource: req.Resource,
 	}
-	rsp, err := c.c.Authorize(context.Background(), in)
+	rsp, err := c.c.Authorize(ctx, in)
 	if err != nil {
 		return nil, err
 	}
