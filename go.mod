@@ -7,6 +7,7 @@ require (
 	github.com/Ankr-network/dccn-tools/snowflake v0.0.0-20191101025757-3dce8f80a842 // indirect
 	github.com/Ankr-network/dccn-tools/zap v0.0.0-20191101025757-3dce8f80a842
 	github.com/gogo/protobuf v1.3.1 // indirect
+	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
 	github.com/golang/protobuf v1.3.2
 	github.com/mwitkow/go-proto-validators v0.2.0
 	go.uber.org/multierr v1.4.0 // indirect

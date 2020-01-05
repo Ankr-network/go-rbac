@@ -46,7 +46,7 @@ OUT:
 			break OUT
 		}
 	}
-	runtime.SetFinalizer(&r, roleFinalizer)
+	runtime.SetFinalizer(r, roleFinalizer)
 	return r
 }
 
