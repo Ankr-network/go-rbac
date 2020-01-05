@@ -7,7 +7,7 @@ import (
 
 // this example shows how to use this package to authorize sth.
 func ExampleUse_authorize() {
-	srvAddr := "127.0.0.1:6801"
+	srvAddr := "192.168.39.113:31923"
 	c, err := New(srvAddr)
 	if err != nil {
 		fmt.Println(err)

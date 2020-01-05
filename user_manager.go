@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/Ankr-network/go-rbac/rbac"
+	"github.com/Ankr-network/go-rbac/internal/rbac"
 	"github.com/golang/glog"
 )
 

@@ -21,7 +21,7 @@ package go_rbac
 import (
 	"context"
 
-	"github.com/Ankr-network/go-rbac/rbac"
+	"github.com/Ankr-network/go-rbac/internal/rbac"
 )
 
 type Request struct {
